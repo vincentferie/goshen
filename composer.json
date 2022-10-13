@@ -1,0 +1,17 @@
+{
+    "name": "architecture/Devman",
+    "authors": [
+        {
+            "name": "Férié",
+            "email": "arshey@live.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Router\\": "routes/",
+            "App\\": "app/",
+            "Views\\": "views/",
+            "Database\\": "database/"
+        }
+    }
+}
