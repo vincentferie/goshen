@@ -14,7 +14,10 @@ class RenderController extends Controller
         $activity = new Activity($this->getDB());
         $activites = $activity->findAll();
 
-        return $this->view('content.index', compact('activites'));
+        $testimonial = new Testimonial($this->getDB());
+        $testimonials = $testimonial->findAll();
+
+        return $this->view('content.index', compact('activites', 'testimonials'));
     }
 
     public function about()

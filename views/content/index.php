@@ -543,64 +543,68 @@ endforeach; ?>
             data-center-mode="false" data-ipad-device2="1" data-ipad-device-nav2="false" data-ipad-device-dots2="true"
             data-ipad-device="1" data-ipad-device-nav="false" data-ipad-device-dots="true" data-mobile-device="1"
             data-mobile-device-nav="false" data-mobile-device-dots="false">
-            <div class="testi-item ">
-                <div class="author-desc">
-                    <div class="desc">
-                        <img class="quote" src="<?= PIC . '/testimonial/main-home/quote-white.png'?>" alt="">
-                        «
-                        En tant que gérant, le cabinet devman & goshen m'a permis d'apprendre à classer tous les
-                        papiers des différents organismes (CNPS, impôts.), à gérer mes charges.
-                        J'ai également eu un véritable appui concernant la gestion des contrats. Bref, quels gains de
-                        temps et d'argent
-                        en fin de compte ! »
-                    </div>
-                    <div class="author-img">
-                        <img src="https://picsum.photos/150" alt="">
-                    </div>
-                </div>
-                <div class="author-part">
-                    <a class="name" href="#">Client 1</a>
-                    <span class="designation">activité de transporteur (stv)</span>
-                </div>
-            </div>
-            <div class="testi-item">
-                <div class="author-desc">
-                    <div class="desc">
-                        <img class="quote" src="<?= PIC . '/testimonial/main-home/quote-white.png'?>" alt="">
-                        Lorsque j'ai sollicité le cabinet Devman & goshen consulting, c'était pour bénéficier de
-                        conseils, au-delà de la gestion comptable de mon cabinet.
-                        Surprise j'ai bénéficié de bien davantage encore : Mr Fornier met en place et sait entretenir
-                        une véritable relation de confiance tout en créant
-                        une dynamique "sur messure" avec ses clients.
 
-                    </div>
-                    <div class="author-img">
-                        <img src="https://picsum.photos/150" alt="">
-                    </div>
-                </div>
-                <div class="author-part">
-                    <a class="name" href="#">Client 2</a>
-                    <span class="designation">Cabinet dentaire</span>
-                </div>
-            </div>
-            <div class="testi-item">
+             <?php foreach ($params['testimonials'] as $testimonial): ?>
+
+            <div class="testi-item" data-toggle="modal" data-target="#<?= $testimonial->slug?>">
                 <div class="author-desc">
                     <div class="desc">
-                        <img class="quote" src="<?= PIC . '/testimonial/main-home/quote-white.png'?>" alt="">
-                        Mr FORNIER ESMEL, l’Expert-comptable, nous a parfaitement assistés dans le cadre de la
-                        restructuration de notre entreprise.
-                        Ses équipes dynamiques ont pris en charge tous mes besoins. J’apprécie aussi la convivialité qui
-                        est présente lorsque je sollicite une personne du Cabinet Devman & goshen consulting.
+                        <img class="quote" src="<?= PIC . 'testimonial/main-home/quote-white.png'?>" alt="">
+                        <p>
+                            <?= $testimonial->getExcerpt()?>
+                        </p>
                     </div>
                     <div class="author-img">
-                        <img src="https://picsum.photos/150" alt="">
+                        <img src="<?= PIC . 'testimonial/' . $testimonial->image?>" alt="">
                     </div>
                 </div>
                 <div class="author-part">
-                    <a class="name" href="#">Client 3</a>
-                    <span class="designation">CENTRE MEDICAL ET D’ANALYSE</span>
+                    <a class="name text-danger">
+                        <?= $testimonial->author?>
+                    </a>
+                    <span class="text-danger font-italic">
+                        <?= $testimonial->poste?>
+                    </span>
                 </div>
             </div>
+
+                    <?php
+                    endforeach; ?>
+
+        </div>
+
+
+        <?php foreach ($params['testimonials'] as $testimonial): ?>
+
+            <!-- Modal -->
+            <div class="modal fade" id="<?= $testimonial->slug?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title " style="font-size: 80%;" id="exampleModalLabel"><img src="<?= PIC . 'testimonial/' . $testimonial->image?>" alt="<?= $testimonial->slug?>" width="10%" height="10%"
+                                class="rounded-circle text-center">  | <?= $testimonial->author?> (<?= $testimonial->poste?>) </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <?= $testimonial->content?>
+                            <br>
+                            <cite style="margin-left: 65%; margin-top: 15%;">
+                               - <?= $testimonial->author?>
+                            </cite>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php endforeach; ?>
+
+            
         </div>
     </div>
 </div>
